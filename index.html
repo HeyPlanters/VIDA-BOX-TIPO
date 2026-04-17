@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' data:; style-src 'self' 'unsafe-inline'">
+  <title>Generador de Títulos</title>
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#0f766e">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app" role="main">
+    <div class="preview-area">
+      <div class="preview-bg" id="previewBg">
+        <canvas id="previewCanvas" width="600" height="200" aria-label="Vista previa del título"></canvas>
+      </div>
+    </div>
+
+    <label for="titleInput" class="visually-hidden">Texto</label>
+    <textarea id="titleInput" placeholder="Escribe aquí tu título" rows="1" maxlength="200" aria-label="Texto"></textarea>
+
+    
+
+    <div class="actions-row">
+      <button id="copyBtn" class="primary" disabled>Copiar PNG</button>
+      <button id="downloadBtn" class="secondary" disabled>Descargar PNG</button>
+    </div>
+
+    <div id="status" class="status" aria-live="polite"></div>
+    
+    <div class="advanced-wrap">
+      <button id="toggle-advanced" class="advanced-toggle" aria-expanded="false" aria-controls="panel-advanced" aria-label="Ajustes">
+        <span class="chevron">▸</span>
+      </button>
+      <div id="panel-advanced" class="advanced-panel" hidden>
+        <div class="controls-row">
+          <div class="size-control">
+            <label for="sizeRange" class="small-label">Tamaño</label>
+            <input type="range" id="sizeRange" min="24" max="180" step="1" value="72" aria-label="Tamaño">
+            <input type="number" id="sizeNumber" min="24" max="180" step="1" value="72" aria-label="Tamaño numérico">
+          </div>
+        </div>
+        <div class="color-row" role="radiogroup" aria-label="Colores">
+          <div class="swatches" id="colorSwatches"></div>
+        </div>
+        <div id="lineControls" class="line-controls" aria-live="polite"></div>
+        <div id="compNote" class="comp-note">Los controles de composición aparecen según las líneas renderizadas.</div>
+      </div>
+    </div>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>

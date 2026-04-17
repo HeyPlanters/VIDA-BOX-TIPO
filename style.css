@@ -1,0 +1,114 @@
+:root{
+  --ui-bg: #f6f7f8;
+  --panel-bg: #ffffff;
+  --muted: #6b7280;
+  --accent: #10b981;
+  --radius: 8px;
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0;
+  font-family: Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+  background:var(--ui-bg);
+  display:flex;
+  align-items:flex-start;
+  justify-content:center;
+  padding:28px;
+  color:#111827;
+}
+.app{
+  width:360px;
+  max-width:92vw;
+  background:transparent;
+}
+.preview-area{margin-bottom:12px}
+.preview-bg{
+  width:100%;
+  border-radius:8px;
+  padding:18px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background-color:transparent;
+  /* subtle checkerboard */
+  background-image:
+    linear-gradient(45deg, #ddd 25%, transparent 25%),
+    linear-gradient(-45deg, #ddd 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, #ddd 75%),
+    linear-gradient(-45deg, transparent 75%, #ddd 75%);
+  background-size:16px 16px;
+  background-position:0 0, 0 8px, 8px -8px, -8px 0px;
+  box-shadow: 0 1px 0 rgba(0,0,0,0.03) inset;
+}
+.preview-bg canvas{display:block; max-width:100%; height:auto; border-radius:4px}
+
+.label{display:block; font-weight:600; margin-bottom:6px}
+/* Visually hidden (keeps accessible label but hides it visually for minimal UI) */
+.visually-hidden{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0 0 0 0)!important;white-space:nowrap!important;border:0!important}
+textarea#titleInput{
+  width:100%;
+  resize:none;
+  padding:10px 12px;
+  font-size:18px;
+  line-height:1.05;
+  border-radius:6px;
+  border:1px solid #e6e7eb;
+  outline:none;
+  min-height:36px;
+}
+textarea#titleInput:focus{box-shadow:0 0 0 3px rgba(16,185,129,0.08); border-color:var(--accent)}
+
+.controls-row{display:flex; align-items:center; margin-top:10px}
+.size-control{display:flex; gap:8px; align-items:center; width:100%}
+.size-control .small-label{width:64px}
+/* size slider only */
+.size-control input[type=range]{flex:1}
+input[type=number]{width:64px; padding:6px; border-radius:6px; border:1px solid #e6e7eb}
+
+.color-row{margin-top:12px; display:flex; align-items:center; gap:8px}
+.swatches{display:flex; gap:8px}
+.swatch{width:36px; height:36px; border-radius:6px; border:2px solid transparent; cursor:pointer}
+.swatch.selected{outline:3px solid rgba(0,0,0,0.12)}
+
+.line-controls{margin-top:10px; display:flex; flex-direction:column; gap:8px}
+.line-control{display:flex; align-items:center; gap:8px}
+.line-label{width:56px; font-size:13px; color:var(--muted)}
+.line-control input[type=range]{flex:1}
+.line-reset{width:34px; height:32px; border-radius:6px; border:1px solid #e6e7eb; background:transparent; cursor:pointer}
+
+/* Accordion styles (minimal, quiet) */
+/* Advanced single-panel wrapper */
+.advanced-wrap{position:relative;margin-top:12px}
+.advanced-toggle{position:absolute;top:-6px;right:0;width:36px;height:36px;border-radius:8px;background:transparent;border:1px solid transparent;display:flex;align-items:center;justify-content:center;color:var(--muted);cursor:pointer}
+.advanced-toggle:focus{outline:2px solid rgba(16,185,129,0.12)}
+.advanced-toggle .chevron{display:inline-block;transition:transform 120ms ease}
+.advanced-toggle[aria-expanded="true"] .chevron{transform:rotate(90deg)}
+.advanced-panel{margin-top:8px;padding:10px;border-radius:8px;background:var(--panel-bg);box-shadow:0 6px 18px rgba(0,0,0,0.06);display:flex;flex-direction:column;gap:8px}
+.comp-note{font-size:12px; color:var(--muted); margin-top:6px}
+
+/* Composition slider styling: neutral track, colored thumb (uses --thumb-color) */
+.line-control input[type=range]{-webkit-appearance:none; appearance:none; background:transparent; height:36px}
+.line-control input[type=range]:focus{outline:none}
+.line-control input[type=range]::-webkit-slider-runnable-track{height:6px;background:#edf1f2;border-radius:999px}
+.line-control input[type=range]::-webkit-slider-thumb{-webkit-appearance:none;width:16px;height:16px;border-radius:50%;background:var(--thumb-color,#111);border:2px solid rgba(0,0,0,0.08);margin-top:-5px}
+.line-control input[type=range]::-moz-range-track{height:6px;background:#edf1f2;border-radius:999px}
+.line-control input[type=range]::-moz-range-thumb{width:16px;height:16px;border-radius:50%;background:var(--thumb-color,#111);border:2px solid rgba(0,0,0,0.08)}
+.line-control input[type=range]::-ms-track{height:6px;background:transparent;border-color:transparent;color:transparent}
+.line-control input[type=range]::-ms-fill-lower{background:#edf1f2;border-radius:999px}
+.line-control input[type=range]::-ms-fill-upper{background:#edf1f2;border-radius:999px}
+
+.actions-row{display:flex; gap:10px; margin-top:12px}
+.primary{flex:1; background:#0f766e; color:white; border:none; padding:10px 12px; border-radius:8px; cursor:pointer}
+.primary:disabled{opacity:0.5; cursor:not-allowed}
+.secondary{background:transparent; color:#111827; border:1px solid #e6e7eb; padding:10px 12px; border-radius:8px; cursor:pointer}
+.secondary:disabled{opacity:0.5; cursor:not-allowed}
+
+.status{margin-top:10px; min-height:18px; color:var(--muted); font-size:13px}
+.status.success{color:green}
+.status.error{color:#b91c1c}
+
+/* footer and 'Más opciones' removed to keep UI minimal */
+
+/* Accessibility focus */
+button:focus,input:focus,textarea:focus{outline-offset:2px}
