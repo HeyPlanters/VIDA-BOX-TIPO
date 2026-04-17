@@ -1,4 +1,4 @@
-# Generador de Títulos (estático)
+# Generador de Títulos en VIDA (estático)
 
 Herramienta pequeña y estática para generar títulos usando una fuente WOFF2 local y exportarlos como PNG transparentes.
 
